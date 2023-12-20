@@ -11,7 +11,7 @@ function wait1(t) {
     }, t * 1000);
   });
 }
-
+ 
 function wait2(t) {
     return wait1(t);
 }
