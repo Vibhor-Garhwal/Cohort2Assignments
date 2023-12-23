@@ -18,36 +18,32 @@ const path = require("path");
 const app = express();
 
 app.get("/files", (req, res) => {
-  let files = fs.readdirSync("./files/");
-  res.json(files);
-});
-
-app.get('/files/:filename', (req, res) => {
-  const fileName = req.params.filename;
-  let data = "";
-
-  fs.readFile('./files/'+fileName, 'utf-8', (err, data) => {
+  fs.readdir(path.join(__dirname, "./files/"), (err, data) => {
     if (err) {
-      res.status(404).send("File not found");
+      return res.status(500).json({ error: "Failed to retrieve the files" });
     }
-    else {
+    res.json(data);
+  });
+})
+
+app.get("/file/:filename", (req, res) => {
+  // const fileName = req.params.filename;
+
+  fs.readFile(
+    path.join(__dirname, "./files/", req.params.filename),
+    "utf-8",
+    (err, data) => {
+      if (err) {
+        return res.status(404).send("File not found");
+      }
       res.send(data);
     }
-  })
+  );
+});
 
-  // if (fs.existsSync('./files/fileName')) {
-  //   fs.readFile('./files/fileName', 'utf-8', (err, data) => {
-  //     if (err) throw err;
-  //     else {
-  //       res.json(data);
-  //     }
-  //   })
-  // }
-  // else {
-  //   res.statusMessage = "File not found";
-  //   res.status(404).end();
-  // }
-})
-app.listen(3000);
+app.use("*", (req, res) => {
+  res.status(404).send("Route not found");
+});
+// app.listen(3000);
 
 module.exports = app;
