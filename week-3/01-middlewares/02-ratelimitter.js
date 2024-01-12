@@ -16,6 +16,24 @@ setInterval(() => {
     numberOfRequestsForUser = {};
 }, 1000)
 
+function middleware(req, res, next) {
+  let userId = req.headers['user-id'];
+
+  if (!numberOfRequestsForUser[userId]) {
+    numberOfRequestsForUser[userId]=1;
+  }
+  else {
+    numberOfRequestsForUser[userId]++;
+    if (numberOfRequestsForUser[userId] >= 5) {
+      return res.status(404).send('Rate limit exceeded');
+
+    }
+  }
+  next();
+}
+
+app.use(middleware);
+
 app.get('/user', function(req, res) {
   res.status(200).json({ name: 'john' });
 });
@@ -25,3 +43,36 @@ app.post('/user', function(req, res) {
 });
 
 module.exports = app;
+
+// const request = require('supertest');
+// const assert = require('assert');
+// const express = require('express');
+// const app = express();
+
+// let numberOfRequestsForUser = {};
+// let count = 1;
+// setInterval(() => {
+//     numberOfRequestsForUser = {};
+// }, 1000)
+
+// app.use((req,res,next) => {
+//   const userID = req.headers.user-id;
+//   if (Object.values(numberOfRequestsForUser).length > 5){
+//     res.status(404).end()
+//   } else {
+//     numberOfRequestsForUser['userId' + count] = userID
+//     count++;
+//   }
+//   next();
+// })
+
+
+// app.get('/user', function(req, res) {
+//   res.status(200).json({ name: 'john' });
+// });
+
+// app.post('/user', function(req, res) {
+//   res.status(200).json({ msg: 'created dummy user' });
+// });
+
+// module.exports = app;

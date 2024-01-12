@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+</head>
+<body>
+    <div>
+        <!-- <input type="number" id="a" placeholder="Number 1"></input> <br><br>
+        <input type="number" id="b" placeholder="Number 2"></input> <br><br>
+
+        <button onclick="populateDiv()">Calculate Sum</button> <br>
+        <div id="finalSum"></div> -->
+
+        <input type="number" placeholder="Principle" id = "p">
+        <input type="number" placeholder="Rate of Interest" id = "r">
+        <input type="number" placeholder="Duration in Years" id = "t">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div id="SI"></div>
+        
+    </div>
     <script>
         function populateDiv(){
             const a = document.getElementById("a").value;
@@ -30,23 +49,5 @@
             
         }
     </script>
-</head>
-<body>
-    <div>
-        <!-- <input type="number" id="a" placeholder="Number 1"></input> <br><br>
-        <input type="number" id="b" placeholder="Number 2"></input> <br><br>
-
-        <button onclick="populateDiv()">Calculate Sum</button> <br>
-        <div id="finalSum"></div> -->
-
-        <input type="number" placeholder="Principle" id = "p">
-        <input type="number" placeholder="Rate of Interest" id = "r">
-        <input type="number" placeholder="Duration in Years" id = "t">
-
-        <button onclick="calculate()">Calculate</button>
-
-        <div id="SI"></div>
-        
-    </div>
 </body>
 </html>
