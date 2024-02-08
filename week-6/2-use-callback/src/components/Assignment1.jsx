@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { set } from "mongoose";
+import React,{ useState,useCallback,memo } from "react";
 
 // Create a counter component with increment and decrement functions. Pass these functions to a child component which has buttons to perform the increment and decrement actions. Use useCallback to ensure that these functions are not recreated on every render.
 
@@ -6,13 +7,13 @@ export function Assignment1() {
     const [count, setCount] = useState(0);
 
     // Your code starts here
-    function handleIncrement() {
+    const handleIncrement = React.useCallback(function () {
+        setCount(counter=>counter+1);
+    }, []);
 
-    }
-
-    function handleDecrement() {
-        
-    }
+    const handleDecrement = useCallback(function () {
+        setCount(counter=>counter-1);
+    }, []);
     // Your code ends here
 
     return (
@@ -23,9 +24,10 @@ export function Assignment1() {
     );
 };
 
-const CounterButtons = ({ onIncrement, onDecrement }) => (
+const CounterButtons = memo(({ onIncrement, onDecrement }) => (
     <div>
         <button onClick={onIncrement}>Increment</button>
+        <br></br>
         <button onClick={onDecrement}>Decrement</button>
     </div>
-);
+));
