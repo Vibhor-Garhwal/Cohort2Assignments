@@ -5,13 +5,11 @@
 */
 
 function isAnagram(str1, str2) {
-  let arr1 = str1.toLowerCase().split("");
-  let arr2 = str2.toLowerCase().split("");
+  let arr1 = str1.toLowerCase().split("").sort();
+  let arr2 = str2.toLowerCase().split("").sort();
 
-  arr1.sort();
-  arr2.sort();
 
-  if (arr1== arr2) {
+  if (arr1.join("") == arr2.join("")) {
     return true;
   } else {
     return false;

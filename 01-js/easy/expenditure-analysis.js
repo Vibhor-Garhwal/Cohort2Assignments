@@ -8,10 +8,10 @@
 function calculateTotalSpentByCategory(transactions) {
   //create an empty dictionary like object
   let categoryWiseTotal = {};
-  for(let transaction in transactions)
+  for(let tr in transactions)
     {
-      let category = transactions[transaction].category;
-      let price = transactions[transaction].price;
+      let category = transactions[tr].category;
+      let price = transactions[tr].price;
 
       if(category in categoryWiseTotal)
       {
@@ -20,7 +20,8 @@ function calculateTotalSpentByCategory(transactions) {
       else{
         categoryWiseTotal[category]=price;
       }
-    }
+  }
+  
   let ans = [];
   for(const category in categoryWiseTotal){
     ans.push({category:category,totalSpent:categoryWiseTotal[category]});
