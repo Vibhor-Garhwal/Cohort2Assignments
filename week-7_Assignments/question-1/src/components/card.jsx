@@ -5,7 +5,7 @@ import { cardAtom } from '../atoms';
 
 export const Card = () => {
     const [card, setCard] = useRecoilState(cardAtom);
-    console.log(card);
+    // console.log(card);
     return (
         <div className='container'>
             <div id='profile-picture'>{card.picture}</div>

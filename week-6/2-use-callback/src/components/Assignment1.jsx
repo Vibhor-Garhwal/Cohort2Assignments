@@ -7,7 +7,7 @@ export function Assignment1() {
     const [count, setCount] = useState(0);
 
     // Your code starts here
-    const handleIncrement = React.useCallback(function () {
+    const handleIncrement = useCallback(function () {
         setCount(counter=>counter+1);
     }, []);
 

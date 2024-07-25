@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useMemo } from "react";
 import React from 'react';
 
 // In this assignment, your task is to create a component that performs an expensive calculation (finding the factorial) based on a user input.
@@ -8,14 +8,17 @@ import React from 'react';
 export function Assignment1() {
     const [input, setInput] = useState(0);
     // Your solution starts here
-    const expensiveValue = React.useMemo(() => {
+    const expensiveValue = useMemo(() => {
+        //define the expensive function
         function factorial(n) {
             if (n === 0) return 1;
             return n * factorial(n - 1);
         }
+        //an edge case
         if (input === 0) return 0;
+        //call the expensive function with the input state variable which when unchanged the memoized value has to be used instead of recalculation.
         return factorial(input);
-    }, [input]);
+    }, [input]); //here also the dependency is checked so if the dependency is changed only then the operation is performed again, else it returns the memoized value only.
     // Your solution ends here
 
     return (

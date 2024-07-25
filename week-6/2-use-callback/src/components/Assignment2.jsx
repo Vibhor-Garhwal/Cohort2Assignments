@@ -19,7 +19,9 @@ export function Assignment2() {
             <input
                 type="text"
                 value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                onChange={(e) => {
+                    setInputText(e.target.value);
+                 }}
                 placeholder="Enter some text"
             />
             <Alert showAlert={showAlert} />
@@ -27,7 +29,7 @@ export function Assignment2() {
     );
 };
 
-const Alert = memo(function ({ showAlert }) {
+const Alert = (function ({ showAlert }) {
     return <button onClick={showAlert}>Show Alert</button>
 })
 
