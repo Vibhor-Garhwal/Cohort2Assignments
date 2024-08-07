@@ -11,7 +11,9 @@ Actions: Create a new user account. Perform validations and return a success mes
  - POST /users/signin - User login.
 Inputs: email, password
 Actions: Authenticate the user. Return a token (JWT) for authorization in subsequent requests if successful, or an error message if authentication fails.
-Blog Platform Endpoints:
+
+
+### Blog Platform Endpoints:
 
  - GET /posts - Retrieve all blog posts.
 Actions: Fetch a list of all blog posts. Can be public or user-specific based on authentication.
